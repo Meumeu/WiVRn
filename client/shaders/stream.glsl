@@ -69,6 +69,6 @@ vec4 sRGB_to_linear_rgba(vec4 x)
 
 void main()
 {
-	outColor = sRGB_to_linear_rgba(texture(texSampler, inUV));
+	outColor = texture(texSampler, inUV);
 }
 #endif
