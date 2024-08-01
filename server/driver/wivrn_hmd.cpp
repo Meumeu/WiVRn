@@ -258,6 +258,11 @@ xrt_space_relation wivrn_hmd::get_tracked_pose(xrt_input_name name, uint64_t at_
 
 void wivrn_hmd::update_tracking(const from_headset::tracking & tracking, const clock_offset & offset)
 {
+	for (const auto & p: tracking.device_poses)
+	{
+		if (p.device == xrt::drivers::wivrn::device_id::HEAD)
+			U_LOG_I("head position: %f,%f,%f", p.pose.position.x, p.pose.position.y, p.pose.position.z);
+	}
 	views.update_tracking(tracking, offset);
 }
 

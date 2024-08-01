@@ -980,6 +980,10 @@ void scenes::stream::update_local_floor(XrTime when)
 	xrLocateSpace(stage, local, when, &location);
 
 	XrPosef offset{{0, 0, 0, 1}, {location.pose.position.x, location.pose.position.y, 0}};
+	spdlog::info("stage/local offset: {}, {}, {}",
+	             location.pose.position.x,
+	             location.pose.position.y,
+	             location.pose.position.z);
 	std::lock_guard lock(local_floor_mutex);
 	local_floor = session.create_reference_space(XR_REFERENCE_SPACE_TYPE_LOCAL, offset);
 }
